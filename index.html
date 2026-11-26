@@ -366,6 +366,92 @@
       color: var(--gold-deep); padding: 0 .08em;
     }
 
+    /* ============ Awardees (Gawad Parangal) ============ */
+    .awards-sec {
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(235, 207, 139, .5), transparent 60%),
+        var(--bg-cream-deep);
+    }
+    .awards-lead {
+      max-width: 620px; margin: 4px auto 0;
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(17px, 2.4vw, 21px); line-height: 1.7; color: var(--text-ink);
+    }
+    .award-counts {
+      margin-top: 16px; font-size: 11px; font-weight: 600;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--navy);
+    }
+    .award-groups {
+      display: flex; flex-direction: column;
+      gap: clamp(26px, 4.5vw, 44px); margin-top: clamp(34px, 5vw, 50px);
+    }
+    .award-group {
+      position: relative;
+      background: rgba(255, 253, 247, .82);
+      border: 1px solid rgba(201, 162, 74, .45);
+      border-radius: 24px;
+      padding: clamp(26px, 4vw, 40px) clamp(18px, 4vw, 40px) clamp(28px, 4vw, 44px);
+      box-shadow: 0 34px 64px -36px rgba(10, 23, 56, .45);
+      backdrop-filter: blur(3px);
+    }
+    .award-group::before {
+      content: ""; position: absolute; inset: 9px; border-radius: 17px;
+      border: 1px solid rgba(201, 162, 74, .26); pointer-events: none;
+    }
+    .award-head { position: relative; text-align: center; }
+    .award-title {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(23px, 4vw, 34px); letter-spacing: .2em;
+      text-transform: uppercase; color: var(--navy-dark); line-height: 1.2;
+    }
+    .award-sub {
+      margin-top: 8px; font-size: 10px; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--gold-deep);
+    }
+    .award-grid {
+      list-style: none; margin-top: clamp(20px, 3vw, 28px); position: relative;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+      gap: 10px 14px;
+    }
+    .award-grid.compact { max-width: 620px; margin-left: auto; margin-right: auto; }
+    .award-grid li {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(15px, 2vw, 19px); letter-spacing: .06em;
+      text-transform: uppercase; color: var(--navy-dark); text-align: center;
+      padding: 13px 14px; border-radius: 12px;
+      background: rgba(247, 239, 220, .6);
+      border: 1px solid rgba(21, 38, 79, .14);
+      transition: transform .35s var(--ease), background .3s, border-color .3s, box-shadow .35s;
+    }
+    .award-grid li:hover {
+      transform: translateY(-3px); background: var(--white);
+      border-color: rgba(201, 162, 74, .75);
+      box-shadow: 0 16px 30px -20px rgba(10, 23, 56, .6);
+    }
+    .award-grid.loyalty li::before {
+      content: "\2726"; color: var(--gold-accent);
+      font-size: .78em; margin-right: .5em; vertical-align: .04em;
+    }
+    /* Posthumous — dignified dark card */
+    .award-group.memoriam {
+      background: linear-gradient(160deg, rgba(38, 68, 140, .95), var(--navy-dark));
+      border-color: rgba(235, 207, 139, .5);
+      box-shadow: 0 34px 64px -36px rgba(10, 23, 56, .8);
+    }
+    .award-group.memoriam .award-title { color: var(--gold-pale); }
+    .award-group.memoriam .award-sub { color: var(--gold-light); }
+    .award-group.memoriam li {
+      background: rgba(255, 255, 255, .07);
+      border-color: rgba(235, 207, 139, .32);
+      color: rgba(255, 253, 247, .94);
+    }
+    .award-group.memoriam li:hover {
+      background: rgba(255, 255, 255, .13);
+      border-color: rgba(235, 207, 139, .7);
+      box-shadow: 0 16px 30px -20px rgba(0, 0, 0, .7);
+    }
+    .award-group.memoriam::before { border-color: rgba(235, 207, 139, .28); }
+
     /* ============ RSVP CTA ============ */
     .rsvp-sec { background: linear-gradient(180deg, var(--bg-cream-deep), #E8D5A4); text-align: center; }
     .btn-primary {
@@ -713,6 +799,84 @@
           <div class="star-rule" aria-hidden="true">
             <span class="line"></span><span class="star"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span><span class="line"></span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Awardees -->
+    <section class="section awards-sec" id="awards">
+      <div class="container center">
+        <span class="deco-star twinkle" style="top:8%;left:10%;width:22px;animation-delay:.2s" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span>
+        <span class="deco-star twinkle" style="top:14%;right:9%;width:16px;animation-delay:1.1s" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span>
+        <p class="eyebrow" data-reveal="up">Gawad Parangal</p>
+        <h2 class="sec-title" data-reveal="up" style="color:var(--navy-dark)">Awardees</h2>
+        <div class="star-rule" data-reveal="up" aria-hidden="true">
+          <span class="line"></span><span class="star"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span><span class="line"></span>
+        </div>
+        <p class="awards-lead" data-reveal="up">In recognition of dedicated years of service, selfless devotion, and a legacy of excellence.</p>
+        <p class="award-counts" data-reveal="up">12 Retirees &middot; 2 Posthumous &middot; 18 Loyalty Awardees</p>
+
+        <div class="award-groups">
+
+          <div class="award-group" data-reveal="up">
+            <div class="award-head">
+              <h3 class="award-title">Retirees</h3>
+              <p class="award-sub">With gratitude for years of service</p>
+            </div>
+            <ul class="award-grid">
+              <li>Atty. Alim D. Pangandaman</li>
+              <li>Mr. Greg Patrick P. Pabelonio</li>
+              <li>Engr. Manuel C. Del Carmen</li>
+              <li>Mr. Samad P. Abaton</li>
+              <li>Ms. Susan M. Montalban</li>
+              <li>Engr. Nicolas C. Laurente</li>
+              <li>Mr. Jesse G. Tarpin</li>
+              <li>Mr. Laut D. Marmay</li>
+              <li>Mr. Celso R. Salinas</li>
+              <li>Ms. Marie Fe Q. Piquero</li>
+              <li>Ms. Marilyn F. Nimez</li>
+              <li>Mr. Leonido R. Balacuit</li>
+            </ul>
+          </div>
+
+          <div class="award-group memoriam" data-reveal="up">
+            <div class="award-head">
+              <h3 class="award-title">Posthumous</h3>
+              <p class="award-sub">In memoriam &mdash; forever in our hearts</p>
+            </div>
+            <ul class="award-grid compact">
+              <li>Mr. Jerry G. Regala</li>
+              <li>Ms. Danette D. Dungganon</li>
+            </ul>
+          </div>
+
+          <div class="award-group" data-reveal="up">
+            <div class="award-head">
+              <h3 class="award-title">Loyalty Awardees</h3>
+              <p class="award-sub">For unwavering years of service</p>
+            </div>
+            <ul class="award-grid loyalty">
+              <li>Ms. Marie Fe Q. Piquero</li>
+              <li>Mr. Wenifredo C. Alburo</li>
+              <li>Ms. Jessie A. Altura</li>
+              <li>Mr. Rosalito V. Balasabas</li>
+              <li>Mr. Romelito C. Elimanco</li>
+              <li>Engr. Ramil P. Leones</li>
+              <li>Ms. Milagros N. Nomananap</li>
+              <li>Mr. Napoleon R. Orillaneda</li>
+              <li>Mr. Solaiman R. Pacasirang</li>
+              <li>Mr. Jose Neil C. Torres</li>
+              <li>Mr. Noel L. Yamson</li>
+              <li>Mr. Ismael C. Baratas</li>
+              <li>Mr. Rey S. Bulaso</li>
+              <li>Mr. Alioden D. Gabriel</li>
+              <li>Mr. Alex M. Lacoto</li>
+              <li>Ms. Jurnith C. Leopoldo</li>
+              <li>Mr. Monadato S. Macud</li>
+              <li>Mr. Laut D. Marmay</li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </section>
