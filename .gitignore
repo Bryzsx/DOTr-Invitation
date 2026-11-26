@@ -1,0 +1,9 @@
+# Local scratch/probe files — not deployed
+_probe*.html
+
+# Vercel
+.vercel
+
+# OS / editor
+.DS_Store
+Thumbs.db

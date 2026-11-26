@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A1738">
+  <meta name="description" content="Department of Transportation – Caraga Region cordially invites you to the Year End Assessment and Gawad Parangal, December 7, 2026, LMX Convention Center.">
+  <title>Year End Assessment &amp; Gawad Parangal | DOTr Caraga</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z' fill='%23C9A24A'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============ Design tokens ============ */
+    :root {
+      --bg-cream: #F7EFDC;
+      --bg-cream-deep: #EFDFB4;
+      --navy-dark: #0A1738;
+      --navy: #12275C;
+      --navy-light: #26448C;
+      --gold-accent: #C9A24A;
+      --gold-light: #EBCF8B;
+      --gold-pale: #F6E7BC;
+      --gold-deep: #8A6A26;
+      --text-ink: #15264F;
+      --crimson: #C8102E;
+      --royal: #1F4E9C;
+      --white: #FFFDF7;
+      --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+      --script: 'Great Vibes', cursive;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+      --frame-inset: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg-cream);
+      color: var(--text-ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.locked { overflow: hidden; height: 100vh; }
+    img, svg { display: block; }
+    a { color: inherit; }
+    button { font-family: inherit; }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ============ Sparkle canvas + progress ============ */
+    #sparkles {
+      position: fixed; inset: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 40;
+    }
+    .progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 100%;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold-accent), var(--gold-light));
+      transform-origin: 0 50%; transform: scaleX(0);
+      z-index: 60;
+    }
+
+    /* ============ Gold frame (site-wide) ============ */
+    .site-frame {
+      position: fixed; inset: var(--frame-inset);
+      border: 1px solid rgba(201, 162, 74, .55);
+      pointer-events: none; z-index: 45;
+    }
+    .site-frame::after {
+      content: ""; position: absolute; inset: 7px;
+      border: 1px solid rgba(201, 162, 74, .25);
+    }
+
+    /* ============ Cover ============ */
+    .cover-stack { position: fixed; inset: 0; z-index: 100; pointer-events: none; }
+    .cover-layer {
+      position: absolute; inset: 0;
+      transition: transform 1.25s var(--ease);
+      will-change: transform;
+    }
+    .cover-layer.gold { background: linear-gradient(160deg, var(--gold-light), var(--gold-accent)); transition-delay: .16s; }
+    .cover-layer.navy { background: var(--navy); transition-delay: .08s; }
+    .cover {
+      pointer-events: auto;
+      background:
+        radial-gradient(ellipse at 50% 30%, rgba(235, 207, 139, .35), transparent 55%),
+        radial-gradient(ellipse at 50% 115%, rgba(201, 162, 74, .45), transparent 65%),
+        linear-gradient(180deg, #FBF5E6 0%, var(--bg-cream) 55%, var(--bg-cream-deep) 100%);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: ""; position: absolute; inset: 18px;
+      border: 1px solid rgba(138, 106, 38, .55); pointer-events: none; z-index: 3;
+    }
+    .cover::after {
+      content: ""; position: absolute; inset: 26px;
+      border: 1px solid rgba(138, 106, 38, .22); pointer-events: none; z-index: 3;
+    }
+    .opened .cover-layer { transform: translateY(-102%); }
+    .opened .cover-inner { transform: translateY(-38vh); opacity: 0; }
+    .cover-stack.gone { display: none; }
+
+    .cover-inner {
+      position: relative; z-index: 4;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      text-align: center; padding: 28px; max-width: 720px; width: 100%;
+      transition: transform 1s var(--ease), opacity .7s ease;
+    }
+    .cover-eyebrow {
+      font-size: 11px; letter-spacing: .42em; text-transform: uppercase;
+      color: var(--gold-deep); font-weight: 600;
+      opacity: 0; animation: rise 1s var(--ease) .3s forwards;
+    }
+    .cover-seal {
+      width: clamp(96px, 16vw, 132px); height: auto;
+      opacity: 0; animation: zoomIn 1.2s var(--ease) .45s forwards;
+      filter: drop-shadow(0 6px 18px rgba(10, 23, 56, .18));
+    }
+    .cover-agency {
+      font-weight: 700; font-size: clamp(15px, 2.4vw, 19px);
+      letter-spacing: .12em; text-transform: uppercase; color: var(--navy-dark);
+      line-height: 1.45;
+      opacity: 0; animation: rise 1s var(--ease) .7s forwards;
+    }
+    .cover-agency span { display: block; font-weight: 500; letter-spacing: .3em; font-size: .82em; color: var(--navy); }
+    .cover-title {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(30px, 6.4vw, 54px); line-height: 1.08;
+      letter-spacing: .04em; text-transform: uppercase; color: var(--navy-dark);
+      opacity: 0; animation: rise 1.1s var(--ease) .95s forwards;
+    }
+    .cover-title em {
+      display: block; font-style: italic; text-transform: none;
+      font-size: .55em; color: var(--gold-deep); letter-spacing: 0; margin: 2px 0;
+    }
+    .cover-date {
+      font-family: var(--serif); font-size: clamp(16px, 2.6vw, 20px);
+      letter-spacing: .22em; text-transform: uppercase; color: var(--navy);
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;
+      opacity: 0; animation: rise 1s var(--ease) 1.2s forwards;
+    }
+    .cover-date::before, .cover-date::after {
+      content: ""; width: 34px; height: 1px; background: var(--gold-accent);
+    }
+    .open-btn {
+      margin-top: 8px; position: relative; overflow: hidden;
+      font-size: 12px; font-weight: 600; letter-spacing: .32em; text-transform: uppercase;
+      color: var(--navy-dark);
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold-accent));
+      border: 0; border-radius: 999px; padding: 16px 34px 16px 40px;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 12px;
+      box-shadow: 0 10px 30px rgba(201, 162, 74, .3), inset 0 0 0 1px rgba(255,255,255,.45);
+      opacity: 0; animation: rise 1s var(--ease) 1.45s forwards, pulse 2.8s ease-in-out 3s infinite;
+      transition: transform .3s var(--ease);
+    }
+    .open-btn:hover { transform: translateY(-3px); }
+    .open-btn:focus-visible { outline: 2px solid var(--navy-dark); outline-offset: 4px; }
+    .open-btn::after {
+      content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255,255,255,.75), transparent);
+      transform: skewX(-20deg); animation: shine 3.4s ease-in-out 2.6s infinite;
+    }
+    .open-btn svg { animation: nudge 1.6s ease-in-out infinite; }
+    .cover-hint {
+      font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: rgba(21, 38, 79, .55);
+      opacity: 0; animation: rise 1s var(--ease) 1.7s forwards;
+    }
+
+    /* Cover corner drapery */
+    .cover .drape { position: absolute; z-index: 2; pointer-events: none; }
+    .cover .drape.tl { top: 0; left: 0; width: clamp(240px, 42vw, 520px); }
+    .cover .drape.br { bottom: 0; right: 0; width: clamp(240px, 42vw, 520px); transform: rotate(180deg); }
+    .cover .bokeh { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+    /* ============ Shared decor ============ */
+    .drape { pointer-events: none; }
+    .section {
+      position: relative; padding: clamp(72px, 11vw, 130px) 24px;
+      overflow: hidden;
+    }
+    .container { max-width: 980px; margin: 0 auto; position: relative; z-index: 2; }
+    .center { text-align: center; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 14px;
+      font-size: 11px; letter-spacing: .44em; text-transform: uppercase;
+      font-weight: 600; color: var(--gold-deep);
+    }
+    .eyebrow::before, .eyebrow::after { content: ""; width: 30px; height: 1px; background: var(--gold-accent); }
+
+    /* star divider: rule — ★ — rule */
+    .star-rule {
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      width: min(420px, 78%); margin: 22px auto;
+    }
+    .star-rule .line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-accent)); }
+    .star-rule .line:last-child { background: linear-gradient(90deg, var(--gold-accent), transparent); }
+    .star-rule .star { width: 22px; height: 22px; color: var(--gold-accent); flex: none; }
+    .star-rule .star svg { width: 100%; height: 100%; fill: currentColor; }
+
+    /* ============ Hero ============ */
+    .hero {
+      min-height: 100svh; display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(235, 207, 139, .4), transparent 55%),
+        radial-gradient(ellipse at 50% 120%, rgba(201, 162, 74, .5), transparent 60%),
+        linear-gradient(180deg, #FCF7EA 0%, var(--bg-cream) 50%, var(--bg-cream-deep) 100%);
+      padding-top: clamp(90px, 12vw, 140px); padding-bottom: clamp(90px, 12vw, 140px);
+    }
+    .hero .drape.tl { position: absolute; top: 0; left: 0; width: clamp(220px, 36vw, 460px); z-index: 1; }
+    .hero .drape.br { position: absolute; bottom: 0; right: 0; width: clamp(220px, 36vw, 460px); transform: rotate(180deg); z-index: 1; }
+
+    .hero-seal {
+      width: clamp(88px, 13vw, 118px); height: auto; margin: 0 auto 18px;
+      filter: drop-shadow(0 6px 16px rgba(10, 23, 56, .16));
+    }
+    .hero-agency {
+      font-weight: 700; font-size: clamp(14px, 2.2vw, 17px);
+      letter-spacing: .16em; text-transform: uppercase; color: var(--navy-dark); line-height: 1.5;
+    }
+    .hero-agency span { display: block; font-weight: 500; letter-spacing: .32em; font-size: .85em; color: var(--navy); }
+    .hero-invite {
+      margin-top: 26px; font-size: clamp(11px, 1.6vw, 13px);
+      letter-spacing: .4em; text-transform: uppercase; color: var(--navy); font-weight: 500;
+    }
+    .hero-title {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(38px, 8vw, 76px); line-height: 1.04;
+      letter-spacing: .03em; text-transform: uppercase; color: var(--navy-dark);
+      margin-top: 14px;
+    }
+    .hero-title em {
+      display: block; font-style: italic; text-transform: none;
+      font-size: .5em; color: var(--gold-deep); margin: 4px 0; letter-spacing: 0;
+    }
+    .hero-quote {
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(17px, 2.6vw, 22px); color: var(--text-ink);
+      max-width: 560px; margin: 6px auto 0; line-height: 1.7;
+    }
+    .hero-quote .script {
+      font-family: var(--script); font-style: normal; font-size: 1.5em;
+      color: var(--gold-deep); padding: 0 .06em;
+    }
+    .scroll-cue {
+      margin: 44px auto 0; width: 26px; height: 42px;
+      border: 1px solid rgba(138, 106, 38, .6); border-radius: 20px; position: relative;
+    }
+    .scroll-cue::after {
+      content: ""; position: absolute; left: 50%; top: 8px; width: 3px; height: 8px;
+      margin-left: -1.5px; border-radius: 2px; background: var(--gold-accent);
+      animation: scrollDot 1.8s ease-in-out infinite;
+    }
+
+    /* ============ Countdown ============ */
+    .countdown-sec {
+      background:
+        radial-gradient(ellipse at 15% 0%, rgba(38, 68, 140, .55), transparent 55%),
+        radial-gradient(ellipse at 85% 100%, rgba(201, 162, 74, .16), transparent 55%),
+        var(--navy-dark);
+      color: var(--white);
+    }
+    .countdown-sec .eyebrow { color: var(--gold-light); }
+    .countdown-sec .eyebrow::before, .countdown-sec .eyebrow::after { background: var(--gold-light); }
+    .countdown-sec .star-rule { color: var(--gold-light); }
+    .countdown-sec .star-rule .line { background: linear-gradient(90deg, transparent, rgba(235,207,139,.7)); }
+    .countdown-sec .star-rule .line:last-child { background: linear-gradient(90deg, rgba(235,207,139,.7), transparent); }
+    .countdown-sec .star-rule .star { color: var(--gold-light); }
+    .sec-title {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(30px, 5vw, 46px); letter-spacing: .05em;
+      text-transform: uppercase; margin-top: 12px; line-height: 1.15;
+    }
+    .countdown {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(10px, 2vw, 20px); max-width: 720px; margin: 42px auto 0;
+    }
+    .tile {
+      position: relative; border-radius: 16px;
+      background: linear-gradient(180deg, rgba(38, 68, 140, .55), rgba(10, 23, 56, .9));
+      border: 1px solid rgba(235, 207, 139, .35);
+      padding: clamp(18px, 3vw, 28px) 6px clamp(14px, 2.2vw, 20px);
+      box-shadow: 0 18px 36px -18px rgba(0,0,0,.6);
+      overflow: hidden;
+    }
+    .tile::after {
+      content: ""; position: absolute; inset: 5px; border-radius: 11px;
+      border: 1px solid rgba(235, 207, 139, .22); pointer-events: none;
+    }
+    .tile-num {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(34px, 6.5vw, 60px); line-height: 1;
+      color: var(--gold-pale); display: block; font-variant-numeric: tabular-nums;
+    }
+    .tile-num.tick { animation: flip .55s var(--ease); }
+    .tile-label {
+      display: block; margin-top: 8px; font-size: 9px; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--gold-light); font-weight: 600;
+    }
+
+    /* ============ Details ============ */
+    .details-sec {
+      background:
+        radial-gradient(ellipse at 50% -10%, rgba(235, 207, 139, .35), transparent 55%),
+        var(--bg-cream);
+    }
+    .details-row {
+      display: flex; align-items: stretch; justify-content: center;
+      gap: clamp(20px, 5vw, 56px); margin-top: 34px; flex-wrap: wrap;
+    }
+    .detail {
+      display: flex; align-items: center; gap: 16px; text-align: left;
+      min-width: min(280px, 100%);
+    }
+    .detail .ico {
+      width: 52px; height: 52px; flex: none; border-radius: 50%;
+      background: var(--navy-dark); color: var(--gold-light);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 20px -8px rgba(10, 23, 56, .5);
+    }
+    .detail .ico svg { width: 24px; height: 24px; }
+    .detail .txt strong {
+      display: block; font-size: 10px; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--gold-deep); font-weight: 700; margin-bottom: 3px;
+    }
+    .detail .txt p {
+      font-family: var(--serif); font-size: clamp(20px, 3vw, 26px);
+      font-weight: 600; color: var(--navy-dark); line-height: 1.25; letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .detail .txt p small { display: block; font-size: .62em; letter-spacing: .18em; color: var(--navy); font-weight: 500; margin-top: 2px; }
+    .details-divider { width: 1px; background: linear-gradient(180deg, transparent, var(--gold-accent), transparent); min-height: 60px; }
+
+    /* ============ Message ============ */
+    .message-sec {
+      background:
+        radial-gradient(ellipse at 80% 0%, rgba(235, 207, 139, .3), transparent 50%),
+        linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-cream-deep) 100%);
+    }
+    .message-card {
+      max-width: 720px; margin: 0 auto; text-align: center;
+      background: rgba(255, 253, 247, .72);
+      border: 1px solid rgba(201, 162, 74, .45);
+      border-radius: 24px; padding: clamp(36px, 6vw, 60px) clamp(24px, 5vw, 52px);
+      box-shadow: 0 30px 60px -30px rgba(10, 23, 56, .35);
+      backdrop-filter: blur(4px); position: relative;
+    }
+    .message-card::before {
+      content: ""; position: absolute; inset: 9px; border-radius: 17px;
+      border: 1px solid rgba(201, 162, 74, .28); pointer-events: none;
+    }
+    .message-card .statuette { width: 54px; margin: 0 auto 14px; color: var(--gold-accent); }
+    .message-card .statuette svg { width: 100%; height: auto; fill: currentColor; }
+    .message-text {
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(19px, 3vw, 25px); line-height: 1.75; color: var(--text-ink);
+    }
+    .message-text .script {
+      font-family: var(--script); font-style: normal; font-size: 1.6em;
+      color: var(--gold-deep); padding: 0 .08em;
+    }
+
+    /* ============ RSVP CTA ============ */
+    .rsvp-sec { background: linear-gradient(180deg, var(--bg-cream-deep), #E8D5A4); text-align: center; }
+    .btn-primary {
+      position: relative; overflow: hidden; margin-top: 30px;
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 12px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase;
+      padding: 18px 40px; border: 0; border-radius: 999px; cursor: pointer;
+      color: var(--navy-dark);
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold-accent));
+      box-shadow: 0 16px 34px -14px rgba(138, 106, 38, .8), inset 0 0 0 1px rgba(255,255,255,.4);
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 22px 40px -14px rgba(138, 106, 38, .9); }
+    .btn-primary:focus-visible { outline: 2px solid var(--navy-dark); outline-offset: 4px; }
+    .btn-primary:disabled { opacity: .65; cursor: progress; transform: none; }
+    .btn-primary::after {
+      content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255,255,255,.7), transparent);
+      transform: skewX(-20deg); animation: shine 3.6s ease-in-out infinite;
+    }
+    .rsvp-note { margin-top: 16px; font-size: 12px; letter-spacing: .14em; color: var(--navy); text-transform: uppercase; }
+
+    /* ============ Footer ============ */
+    footer {
+      background: var(--navy-dark); color: var(--white); text-align: center;
+      padding: clamp(60px, 9vw, 90px) 24px clamp(70px, 10vw, 100px);
+      position: relative; overflow: hidden;
+    }
+    footer .drape.br { position: absolute; bottom: 0; right: 0; width: clamp(200px, 30vw, 380px); transform: rotate(180deg); opacity: .8; }
+    footer .see-you {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(26px, 5vw, 42px); letter-spacing: .3em; text-transform: uppercase;
+      color: var(--gold-pale);
+    }
+    footer .foot-seal { width: 74px; margin: 26px auto 16px; opacity: .95; }
+    footer .foot-agency {
+      font-size: 11px; letter-spacing: .3em; text-transform: uppercase;
+      color: rgba(255, 253, 247, .8); line-height: 2;
+    }
+    footer .foot-meta { margin-top: 14px; font-size: 10px; letter-spacing: .18em; color: rgba(235, 207, 139, .7); text-transform: uppercase; }
+
+    /* ============ Modal ============ */
+    .modal {
+      position: fixed; inset: 0; z-index: 200;
+      display: flex; align-items: flex-end; justify-content: center;
+      visibility: hidden; pointer-events: none;
+    }
+    @media (min-width: 640px) { .modal { align-items: center; padding: 24px; } }
+    .modal.open { visibility: visible; pointer-events: auto; }
+    .modal-backdrop {
+      position: absolute; inset: 0; background: rgba(10, 23, 56, .72);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      opacity: 0; transition: opacity .45s ease;
+    }
+    .modal.open .modal-backdrop { opacity: 1; }
+    .sheet {
+      position: relative; width: 100%; max-width: 480px; max-height: 92vh;
+      display: flex; flex-direction: column;
+      background: var(--bg-cream); color: var(--text-ink);
+      border-radius: 26px 26px 0 0; overflow: hidden;
+      transform: translateY(105%); transition: transform .65s var(--ease);
+      box-shadow: 0 -20px 60px rgba(0,0,0,.4);
+    }
+    @media (min-width: 640px) {
+      .sheet { border-radius: 26px; transform: translateY(60px) scale(.96); opacity: 0;
+        transition: transform .65s var(--ease), opacity .45s ease; }
+    }
+    .modal.open .sheet { transform: none; opacity: 1; }
+    .sheet-head {
+      background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+      color: var(--white); padding: 28px 26px 24px; text-align: center; position: relative;
+    }
+    .sheet-head .eyebrow { color: var(--gold-light); font-size: 10px; }
+    .sheet-head .eyebrow::before, .sheet-head .eyebrow::after { background: var(--gold-light); }
+    .sheet-head h2 {
+      font-family: var(--serif); font-weight: 600; font-size: clamp(28px, 5vw, 36px);
+      letter-spacing: .08em; text-transform: uppercase; margin-top: 8px;
+    }
+    .close-btn {
+      position: absolute; top: 14px; right: 14px; width: 38px; height: 38px;
+      border-radius: 50%; background: rgba(255,255,255,.1);
+      border: 1px solid rgba(235, 207, 139, .5); color: var(--white);
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      transition: transform .35s var(--ease), background .3s;
+    }
+    .close-btn:hover { transform: rotate(90deg); background: rgba(255,255,255,.2); }
+    .close-btn:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+    .sheet-body { padding: 26px 26px 32px; overflow-y: auto; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .field label, .field .label {
+      font-size: 10px; letter-spacing: .26em; text-transform: uppercase;
+      font-weight: 700; color: var(--navy);
+    }
+    .input {
+      width: 100%; font-family: var(--serif); font-size: 18px; color: var(--text-ink);
+      background: var(--white); border: 1px solid rgba(21, 38, 79, .22);
+      border-radius: 12px; padding: 12px 15px; transition: border-color .3s, box-shadow .3s;
+    }
+    .input:focus { outline: none; border-color: var(--gold-accent); box-shadow: 0 0 0 4px rgba(201, 162, 74, .25); }
+    .input.invalid { border-color: var(--crimson); box-shadow: 0 0 0 4px rgba(200, 16, 46, .12); }
+    select.input { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2315264F' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; }
+    textarea.input { resize: vertical; min-height: 84px; font-style: italic; }
+    .form-error { color: var(--crimson); font-size: 13px; min-height: 18px; margin-bottom: 6px; }
+    .sheet-body .btn-primary { width: 100%; justify-content: center; margin-top: 4px; }
+    .success { text-align: center; padding: 16px 0 8px; display: none; }
+    .success.show { display: block; animation: zoomIn .6s var(--ease); }
+    .success .ring {
+      width: 84px; height: 84px; margin: 0 auto 16px; border-radius: 50%;
+      background: var(--navy-dark); color: var(--gold-light);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .success h3 {
+      font-family: var(--serif); font-weight: 600; font-size: 34px;
+      color: var(--navy-dark); letter-spacing: .06em; text-transform: uppercase;
+    }
+    .success p { font-family: var(--serif); font-size: 18px; margin-top: 8px; color: var(--text-ink); }
+    .success .btn-secondary {
+      margin-top: 22px; display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase;
+      padding: 13px 26px; border: 1px solid var(--navy-dark); border-radius: 999px;
+      cursor: pointer; color: var(--navy-dark); background: transparent;
+      transition: background .3s, color .3s;
+    }
+    .success .btn-secondary:hover { background: var(--navy-dark); color: var(--gold-pale); }
+
+    /* ============ Reveal on scroll ============ */
+    [data-reveal] {
+      opacity: 0;
+      transition: opacity 1s var(--ease), transform 1s var(--ease), filter 1s var(--ease);
+    }
+    [data-reveal="up"] { transform: translateY(44px); }
+    [data-reveal="left"] { transform: translateX(-50px); }
+    [data-reveal="right"] { transform: translateX(50px); }
+    [data-reveal="zoom"] { transform: scale(.9); filter: blur(5px); }
+    [data-reveal].in { opacity: 1; transform: none; filter: none; }
+
+    /* ============ Keyframes ============ */
+    @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(.6) rotate(-14deg); } to { opacity: 1; transform: none; } }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 10px 30px rgba(201,162,74,.3), 0 0 0 0 rgba(201,162,74,.45); }
+      50% { box-shadow: 0 10px 30px rgba(201,162,74,.3), 0 0 0 14px rgba(201,162,74,0); }
+    }
+    @keyframes shine { 0% { left: -60%; } 40%, 100% { left: 130%; } }
+    @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    @keyframes scrollDot { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(16px); } }
+    @keyframes flip { 0% { transform: translateY(-35%) rotateX(70deg); opacity: 0; } 100% { transform: none; opacity: 1; } }
+    @keyframes twinkle { 0%, 100% { opacity: .35; transform: scale(.8) rotate(0deg); } 50% { opacity: 1; transform: scale(1.1) rotate(12deg); } }
+
+    .twinkle { animation: twinkle 3.2s ease-in-out infinite; }
+
+    /* ============ Decorative stars ============ */
+    .deco-star {
+      position: absolute; color: var(--gold-accent); pointer-events: none; z-index: 1;
+    }
+    .deco-star svg { width: 100%; height: 100%; fill: currentColor; }
+
+    /* ============ Reduced motion ============ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+      [data-reveal] { opacity: 1; transform: none; filter: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ============ Small screens ============ */
+    @media (max-width: 640px) {
+      :root { --frame-inset: 8px; }
+      .countdown { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .details-divider { display: none; }
+      .detail { justify-content: center; text-align: left; }
+      .cover-date::before, .cover-date::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <noscript>
+    <style>
+      .cover-stack, #sparkles, .progress, .scroll-cue { display: none !important; }
+      body { overflow: auto !important; height: auto !important; }
+      [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; }
+    </style>
+  </noscript>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="site-frame" aria-hidden="true"></div>
+  <canvas id="sparkles" aria-hidden="true"></canvas>
+
+  <!-- ===== SVG sprite: drapery, star, statuette ===== -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <defs>
+      <linearGradient id="drapeBase" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#1E3B7A"/><stop offset=".55" stop-color="#12275C"/><stop offset="1" stop-color="#0A1738"/>
+      </linearGradient>
+      <linearGradient id="goldRibbon" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#F6E7BC"/><stop offset=".5" stop-color="#C9A24A"/><stop offset="1" stop-color="#8A6A26"/>
+      </linearGradient>
+      <linearGradient id="drapeSheen" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#3A5DAE" stop-opacity=".55"/><stop offset="1" stop-color="#3A5DAE" stop-opacity="0"/>
+      </linearGradient>
+      <clipPath id="drapeClip">
+        <path d="M0 0 H470 C430 50 412 118 428 188 C356 252 246 288 124 274 C74 268 28 252 0 228 Z"/>
+      </clipPath>
+
+      <!-- Draped stage fabric with metallic gold ribbon edge (top-left orientation) -->
+      <symbol id="drape" viewBox="0 0 500 500">
+        <path d="M0 0 H470 C430 50 412 118 428 188 C356 252 246 288 124 274 C74 268 28 252 0 228 Z" fill="url(#drapeBase)"/>
+        <g clip-path="url(#drapeClip)">
+          <path d="M0 0 H470 C446 34 432 74 430 116 C300 96 140 74 0 92 Z" fill="url(#drapeSheen)"/>
+          <path d="M0 0 H196 C168 56 158 124 172 194 C114 232 48 250 0 246 Z" fill="#16305F" opacity=".65"/>
+          <path d="M0 96 C74 116 152 158 204 216 C158 262 78 284 0 288 Z" fill="#0B1B42" opacity=".6"/>
+          <path d="M0 178 C60 194 130 226 172 266 C124 300 56 314 0 316 Z" fill="#1A3570" opacity=".5"/>
+          <path d="M240 0 C226 48 232 104 258 152 C222 172 178 184 132 188 C160 122 194 56 240 0 Z" fill="#0A1738" opacity=".45"/>
+        </g>
+        <path d="M470 0 C430 50 412 118 428 188 C356 252 246 288 124 274 C74 268 28 252 0 228" fill="none" stroke="url(#goldRibbon)" stroke-width="16" stroke-linecap="round"/>
+        <path d="M470 26 C442 66 428 122 442 182 C372 244 262 276 140 264" fill="none" stroke="#EBCF8B" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+        <path d="M470 54 C450 92 442 132 452 176" fill="none" stroke="#F6E7BC" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+        <path d="M348 316 c1.4 8 4 10.6 12 12 c-8 1.4 -10.6 4 -12 12 c-1.4 -8 -4 -10.6 -12 -12 c8 -1.4 10.6 -4 12 -12 Z" fill="#C9A24A"/>
+        <path d="M96 402 c1 6 3 8 9 9 c-6 1 -8 3 -9 9 c-1 -6 -3 -8 -9 -9 c6 -1 8 -3 9 -9 Z" fill="#C9A24A" opacity=".8"/>
+      </symbol>
+
+      <!-- Four-point sparkle -->
+      <symbol id="sparkle4" viewBox="0 0 24 24">
+        <path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z"/>
+      </symbol>
+
+      <!-- Award statuette -->
+      <symbol id="statuette" viewBox="0 0 60 130">
+        <path d="M30 0 l5 10.5 11.5 1.6 -8.3 7.9 2.1 11.4 -10.3-5.5 -10.3 5.5 2.1-11.4 -8.3-7.9 11.5-1.6 Z"/>
+        <circle cx="30" cy="42" r="7.5"/>
+        <path d="M30 51 c7.5 0 12 6.5 11 15 l-3 34 h-16 l-3-34 c-1-8.5 3.5-15 11-15 Z"/>
+        <path d="M20 58 C13 50 12 38 16 28 l5 2.5 c-3 8-2.5 16 1.5 22 Z"/>
+        <path d="M40 58 C47 50 48 38 44 28 l-5 2.5 c3 8 2.5 16-1.5 22 Z"/>
+        <rect x="24" y="100" width="12" height="7"/>
+        <path d="M17 107 h26 l5 16 H12 Z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ===== Cover ===== -->
+  <div class="cover-stack" id="coverStack">
+    <div class="cover-layer gold" aria-hidden="true"></div>
+    <div class="cover-layer navy" aria-hidden="true"></div>
+    <div class="cover-layer cover" id="cover" role="dialog" aria-modal="true" aria-label="Invitation cover">
+      <svg class="drape tl" viewBox="0 0 500 500" aria-hidden="true"><use href="#drape"/></svg>
+      <svg class="drape br" viewBox="0 0 500 500" aria-hidden="true"><use href="#drape"/></svg>
+      <div class="cover-inner">
+        <p class="cover-eyebrow">You are cordially invited</p>
+        <img class="cover-seal" src="assets/dotr-seal.svg" alt="Official seal of the Department of Transportation">
+        <h1 class="cover-title">Year End Assessment <em>and</em> Gawad Parangal</h1>
+        <p class="cover-date">December 7, 2026 &middot; 5:30 PM</p>
+        <button class="open-btn" id="openBtn" type="button">
+          Open Invitation
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </button>
+        <p class="cover-hint">Tap to slide open</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Main ===== -->
+  <main id="main" tabindex="-1">
+
+    <!-- Hero -->
+    <section class="section hero">
+      <svg class="drape tl" viewBox="0 0 500 500" aria-hidden="true"><use href="#drape"/></svg>
+      <svg class="drape br" viewBox="0 0 500 500" aria-hidden="true"><use href="#drape"/></svg>
+      <span class="deco-star twinkle" style="top:20%;left:14%;width:24px;animation-delay:.3s" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span>
+      <span class="deco-star twinkle" style="top:32%;left:8%;width:14px;animation-delay:1.4s" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span>
+      <span class="deco-star twinkle" style="bottom:24%;right:12%;width:20px;animation-delay:.9s" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span>
+      <div class="container center">
+        <img class="hero-seal" src="assets/dotr-seal.svg" alt="" data-reveal="zoom">
+        <p class="hero-agency" data-reveal="up">Department of Transportation<span>Caraga Region</span></p>
+        <p class="hero-invite" data-reveal="up">You are cordially invited to the</p>
+        <div class="star-rule" data-reveal="up" aria-hidden="true">
+          <span class="line"></span><span class="star"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span><span class="line"></span>
+        </div>
+        <h2 class="hero-title" data-reveal="up">Year End Assessment <em>and</em> Gawad Parangal</h2>
+        <div class="star-rule" data-reveal="up" aria-hidden="true">
+          <span class="line"></span><span class="star"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span><span class="line"></span>
+        </div>
+        <p class="hero-quote" data-reveal="up">Let&rsquo;s celebrate a year of hard work, stronger teamwork and continued service with a touch of <span class="script">Hollywood glamour!</span></p>
+        <div class="scroll-cue" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Countdown -->
+    <section class="section countdown-sec" id="countdown">
+      <div class="container center">
+        <p class="eyebrow" data-reveal="up">Save the date</p>
+        <h2 class="sec-title" data-reveal="up">Counting Down</h2>
+        <div class="star-rule" data-reveal="up" aria-hidden="true">
+          <span class="line"></span><span class="star"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span><span class="line"></span>
+        </div>
+        <div class="countdown" data-reveal="zoom">
+          <div class="tile"><span class="tile-num" id="cdDays">--</span><span class="tile-label">Days</span></div>
+          <div class="tile"><span class="tile-num" id="cdHours">--</span><span class="tile-label">Hours</span></div>
+          <div class="tile"><span class="tile-num" id="cdMinutes">--</span><span class="tile-label">Minutes</span></div>
+          <div class="tile"><span class="tile-num" id="cdSeconds">--</span><span class="tile-label">Seconds</span></div>
+        </div>
+        <p class="rsvp-note" data-reveal="up" style="color:rgba(235,207,139,.85)">December 7, 2026 &middot; 5:30 PM &middot; LMX Convention Center</p>
+      </div>
+    </section>
+
+    <!-- Details -->
+    <section class="section details-sec" id="details">
+      <div class="container center">
+        <p class="eyebrow" data-reveal="up">Event details</p>
+        <h2 class="sec-title" data-reveal="up" style="color:var(--navy-dark)">When &amp; Where</h2>
+        <div class="star-rule" data-reveal="up" aria-hidden="true">
+          <span class="line"></span><span class="star"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span><span class="line"></span>
+        </div>
+        <div class="details-row">
+          <div class="detail" data-reveal="left">
+            <div class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><rect x="7" y="13" width="4" height="4" rx=".5" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <div class="txt">
+              <strong>Date &amp; Time</strong>
+              <p>December 7, 2026<small>5:30 in the afternoon</small></p>
+            </div>
+          </div>
+          <div class="details-divider" aria-hidden="true"></div>
+          <div class="detail" data-reveal="right">
+            <div class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            </div>
+            <div class="txt">
+              <strong>Venue</strong>
+              <p>LMX Convention Center<small>Caraga Region</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Message -->
+    <section class="section message-sec" id="message">
+      <div class="container">
+        <div class="message-card" data-reveal="zoom">
+          <div class="statuette" aria-hidden="true"><svg viewBox="0 0 60 130"><use href="#statuette"/></svg></div>
+          <p class="message-text">Let&rsquo;s celebrate a year of hard work, stronger teamwork and continued service with a touch of <span class="script">Hollywood glamour!</span></p>
+          <div class="star-rule" aria-hidden="true">
+            <span class="line"></span><span class="star"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span><span class="line"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP CTA -->
+    <section class="section rsvp-sec" id="rsvp">
+      <div class="container center">
+        <p class="eyebrow" data-reveal="up">Kindly respond</p>
+        <h2 class="sec-title" data-reveal="up" style="color:var(--navy-dark)">Will You Be There?</h2>
+        <div class="star-rule" data-reveal="up" aria-hidden="true">
+          <span class="line"></span><span class="star"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span><span class="line"></span>
+        </div>
+        <p class="rsvp-note" data-reveal="up">So we can prepare your seat and award kit</p>
+        <button class="btn-primary" id="rsvpOpen" type="button" data-reveal="up">
+          RSVP Now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <svg class="drape br" viewBox="0 0 500 500" aria-hidden="true"><use href="#drape"/></svg>
+      <p class="see-you" data-reveal="up">See You There!</p>
+      <div class="star-rule" data-reveal="up" aria-hidden="true">
+        <span class="line"></span><span class="star"><svg viewBox="0 0 24 24"><use href="#sparkle4"/></svg></span><span class="line"></span>
+      </div>
+      <img class="foot-seal" src="assets/dotr-seal.svg" alt="" data-reveal="up">
+      <p class="foot-agency" data-reveal="up">Department of Transportation<br>Caraga Region</p>
+      <p class="foot-meta" data-reveal="up">Year End Assessment and Gawad Parangal &middot; December 7, 2026 &middot; LMX Convention Center</p>
+    </footer>
+  </main>
+
+  <!-- ===== RSVP Modal ===== -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close></div>
+    <div class="sheet">
+      <div class="sheet-head">
+        <p class="eyebrow">Kindly respond</p>
+        <h2 id="modalTitle">RSVP</h2>
+        <button class="close-btn" type="button" data-close aria-label="Close RSVP form">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="sheet-body">
+        <form id="rsvpForm" novalidate>
+          <div class="field">
+            <label for="fName">Full name</label>
+            <input class="input" id="fName" name="name" type="text" autocomplete="name" placeholder="Juan Dela Cruz">
+          </div>
+          <div class="field">
+            <label for="fOffice">Office / Unit</label>
+            <input class="input" id="fOffice" name="office" type="text" placeholder="e.g. Planning and Service Division">
+          </div>
+          <div class="field">
+            <label for="fStatus">Attendance</label>
+            <select class="input" id="fStatus" name="status">
+              <option value="">Please select&hellip;</option>
+              <option value="yes">Joyfully accepts</option>
+              <option value="no">Regretfully declines</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fGuests">Number of guests (optional)</label>
+            <select class="input" id="fGuests" name="guests">
+              <option value="0">Just me</option>
+              <option value="1">+1 guest</option>
+              <option value="2">+2 guests</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fMsg">Message (optional)</label>
+            <textarea class="input" id="fMsg" name="message" placeholder="A short note for the celebrants&hellip;"></textarea>
+          </div>
+          <p class="form-error" id="formError" role="alert"></p>
+          <button class="btn-primary" id="submitBtn" type="submit">
+            Send RSVP
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+        <div class="success" id="success" aria-live="polite">
+          <div class="ring" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>
+          </div>
+          <h3>Thank You!</h3>
+          <p id="successMsg">Your RSVP has been recorded. See you at the celebration!</p>
+          <button class="btn-secondary" type="button" data-close>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ---------- Cover open ---------- */
+      var coverStack = document.getElementById('coverStack');
+      var main = document.getElementById('main');
+      var openBtn = document.getElementById('openBtn');
+      var revealsStarted = false;
+
+      document.body.classList.add('locked');
+      main.setAttribute('aria-hidden', 'true');
+
+      function startReveals() {
+        if (revealsStarted) return;
+        revealsStarted = true;
+        var els = document.querySelectorAll('[data-reveal]');
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+          els.forEach(function (el) { el.classList.add('in'); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+        els.forEach(function (el) { io.observe(el); });
+      }
+
+      function openInvitation() {
+        coverStack.classList.add('opened');
+        document.body.classList.remove('locked');
+        main.removeAttribute('aria-hidden');
+        startReveals();
+        window.setTimeout(function () { coverStack.classList.add('gone'); }, reduceMotion ? 0 : 1450);
+        try { main.focus({ preventScroll: true }); } catch (err) { main.focus(); }
+      }
+      openBtn.addEventListener('click', openInvitation);
+
+      /* Deep links: #open skips the cover, #rsvp opens the sheet, #countdown/#details/#message jump to a section */
+      var hash = window.location.hash.slice(1);
+      if (hash) {
+        openInvitation();
+        if (hash === 'rsvp') {
+          window.setTimeout(openModal, 100);
+        } else if (hash !== 'open') {
+          var anchor = document.getElementById(hash);
+          if (anchor) window.setTimeout(function () { anchor.scrollIntoView({ behavior: 'instant', block: 'start' }); }, 60);
+        }
+      }
+
+      /* ---------- Scroll progress ---------- */
+      var progress = document.getElementById('progress');
+      function onScroll() {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - doc.clientHeight;
+        progress.style.transform = 'scaleX(' + (max > 0 ? doc.scrollTop / max : 0) + ')';
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      /* ---------- Countdown: Dec 7, 2026, 5:30 PM ---------- */
+      var target = new Date(2026, 11, 7, 17, 30, 0).getTime();
+      var cdEls = {
+        d: document.getElementById('cdDays'),
+        h: document.getElementById('cdHours'),
+        m: document.getElementById('cdMinutes'),
+        s: document.getElementById('cdSeconds')
+      };
+      function pad(n) { return n < 10 ? '0' + n : String(n); }
+      function setTile(el, str) {
+        if (el.textContent === str) return;
+        el.textContent = str;
+        if (!reduceMotion) {
+          el.classList.remove('tick');
+          void el.offsetWidth;
+          el.classList.add('tick');
+        }
+      }
+      function tickCountdown() {
+        var diff = Math.max(0, target - Date.now());
+        var total = Math.floor(diff / 1000);
+        setTile(cdEls.d, String(Math.floor(total / 86400)));
+        setTile(cdEls.h, pad(Math.floor(total / 3600) % 24));
+        setTile(cdEls.m, pad(Math.floor(total / 60) % 60));
+        setTile(cdEls.s, pad(total % 60));
+      }
+      tickCountdown();
+      window.setInterval(tickCountdown, 1000);
+
+      /* ---------- Sparkle canvas ---------- */
+      var canvas = document.getElementById('sparkles');
+      var ctx = canvas.getContext('2d');
+      var particles = [];
+      var rafId = null;
+      var dpr = 1;
+
+      function seedParticles() {
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        var count = Math.round((w * h) / 16000);
+        count = Math.max(24, Math.min(count, 90));
+        particles = [];
+        for (var i = 0; i < count; i++) {
+          var isStar = Math.random() < 0.45;
+          particles.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: isStar ? 4 + Math.random() * 9 : 1.5 + Math.random() * 4,
+            star: isStar,
+            a: 0.15 + Math.random() * 0.5,
+            phase: Math.random() * Math.PI * 2,
+            speed: 0.4 + Math.random() * 0.8,
+            drift: 0.02 + Math.random() * 0.06
+          });
+        }
+      }
+
+      function resizeCanvas() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(window.innerWidth * dpr);
+        canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        seedParticles();
+      }
+
+      function drawStar(x, y, r, alpha) {
+        ctx.globalAlpha = alpha;
+        ctx.beginPath();
+        ctx.moveTo(x, y - r);
+        ctx.quadraticCurveTo(x + r * 0.12, y - r * 0.12, x + r, y);
+        ctx.quadraticCurveTo(x + r * 0.12, y + r * 0.12, x, y + r);
+        ctx.quadraticCurveTo(x - r * 0.12, y + r * 0.12, x - r, y);
+        ctx.quadraticCurveTo(x - r * 0.12, y - r * 0.12, x, y - r);
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      function drawFrame(ts) {
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        ctx.clearRect(0, 0, w, h);
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          p.y -= p.drift;
+          if (p.y < -20) { p.y = h + 20; p.x = Math.random() * w; }
+          var tw = 0.55 + 0.45 * Math.sin((ts / 1000) * p.speed + p.phase);
+          var alpha = p.a * tw;
+          if (p.star) {
+            ctx.fillStyle = '#EBCF8B';
+            drawStar(p.x, p.y, p.r, alpha);
+          } else {
+            var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 2.4);
+            g.addColorStop(0, 'rgba(246, 231, 188,' + alpha.toFixed(3) + ')');
+            g.addColorStop(1, 'rgba(246, 231, 188, 0)');
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = g;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r * 2.4, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      function loop(ts) {
+        drawFrame(ts || 0);
+        rafId = window.requestAnimationFrame(loop);
+      }
+
+      function startSparkles() {
+        if (reduceMotion) { drawFrame(0); return; }
+        if (rafId === null) rafId = window.requestAnimationFrame(loop);
+      }
+      function stopSparkles() {
+        if (rafId !== null) { window.cancelAnimationFrame(rafId); rafId = null; }
+      }
+
+      resizeCanvas();
+      startSparkles();
+      window.addEventListener('resize', resizeCanvas);
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stopSparkles(); else startSparkles();
+      });
+
+      /* ---------- RSVP modal ---------- */
+      var modal = document.getElementById('modal');
+      var rsvpOpen = document.getElementById('rsvpOpen');
+      var form = document.getElementById('rsvpForm');
+      var formError = document.getElementById('formError');
+      var success = document.getElementById('success');
+      var successMsg = document.getElementById('successMsg');
+      var submitBtn = document.getElementById('submitBtn');
+      var lastFocus = null;
+
+      function focusables() {
+        return Array.prototype.filter.call(
+          modal.querySelectorAll('button, input, select, textarea, a[href]'),
+          function (el) { return !el.disabled && el.offsetParent !== null; }
+        );
+      }
+
+      function openModal() {
+        lastFocus = document.activeElement;
+        modal.classList.add('open');
+        document.body.classList.add('locked');
+        window.setTimeout(function () {
+          var first = form.style.display === 'none'
+            ? success.querySelector('button')
+            : document.getElementById('fName');
+          if (first) first.focus();
+        }, reduceMotion ? 0 : 350);
+      }
+
+      function resetForm() {
+        form.reset();
+        form.style.display = '';
+        success.classList.remove('show');
+        formError.textContent = '';
+        Array.prototype.forEach.call(form.querySelectorAll('.input'), function (el) {
+          el.classList.remove('invalid');
+        });
+        submitBtn.disabled = false;
+        submitBtn.firstChild.textContent = 'Send RSVP ';
+      }
+
+      function closeModal() {
+        modal.classList.remove('open');
+        document.body.classList.remove('locked');
+        if (lastFocus) { try { lastFocus.focus(); } catch (err) {} }
+        window.setTimeout(resetForm, reduceMotion ? 0 : 500);
+      }
+
+      rsvpOpen.addEventListener('click', openModal);
+      Array.prototype.forEach.call(modal.querySelectorAll('[data-close]'), function (el) {
+        el.addEventListener('click', closeModal);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (!modal.classList.contains('open')) return;
+        if (e.key === 'Escape') { closeModal(); return; }
+        if (e.key === 'Tab') {
+          var f = focusables();
+          if (!f.length) return;
+          var first = f[0];
+          var last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+
+      /* ---------- Form validation (UI only) ---------- */
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = document.getElementById('fName');
+        var status = document.getElementById('fStatus');
+        name.classList.remove('invalid');
+        status.classList.remove('invalid');
+        formError.textContent = '';
+
+        if (!name.value.trim()) {
+          name.classList.add('invalid');
+          formError.textContent = 'Please enter your full name.';
+          name.focus();
+          return;
+        }
+        if (!status.value) {
+          status.classList.add('invalid');
+          formError.textContent = 'Please let us know if you can attend.';
+          status.focus();
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.firstChild.textContent = 'Sending… ';
+
+        window.setTimeout(function () {
+          var firstName = name.value.trim().split(/\s+/)[0];
+          if (status.value === 'yes') {
+            successMsg.textContent = 'Thank you, ' + firstName + '! Your seat is reserved. See you on December 7!';
+          } else {
+            successMsg.textContent = 'Thank you, ' + firstName + '. We\u2019re sorry to miss you — you\u2019ll be remembered at the celebration!';
+          }
+          form.style.display = 'none';
+          success.classList.add('show');
+          var closeBtn = success.querySelector('button');
+          if (closeBtn) closeBtn.focus();
+        }, reduceMotion ? 0 : 700);
+      });
+    })();
+  </script>
+</body>
+</html>
