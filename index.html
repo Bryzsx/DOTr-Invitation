@@ -1060,7 +1060,7 @@
         }
       });
 
-      /* ---------- Form validation (UI only) ---------- */
+      /* ---------- RSVP submission ---------- */
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var name = document.getElementById('fName');
@@ -1083,20 +1083,48 @@
         }
 
         submitBtn.disabled = true;
-        submitBtn.firstChild.textContent = 'Sending… ';
+        submitBtn.firstChild.textContent = 'Sending\u2026 ';
 
-        window.setTimeout(function () {
-          var firstName = name.value.trim().split(/\s+/)[0];
-          if (status.value === 'yes') {
-            successMsg.textContent = 'Thank you, ' + firstName + '! Your seat is reserved. See you on December 7!';
-          } else {
-            successMsg.textContent = 'Thank you, ' + firstName + '. We\u2019re sorry to miss you — you\u2019ll be remembered at the celebration!';
-          }
-          form.style.display = 'none';
-          success.classList.add('show');
-          var closeBtn = success.querySelector('button');
-          if (closeBtn) closeBtn.focus();
-        }, reduceMotion ? 0 : 700);
+        var payload = {
+          name: name.value.trim(),
+          office: document.getElementById('fOffice').value.trim(),
+          status: status.value,
+          guests: parseInt(document.getElementById('fGuests').value, 10) || 0,
+          message: document.getElementById('fMsg').value.trim()
+        };
+
+        fetch('/api/rsvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(function (res) {
+            return res.json()
+              .catch(function () { return {}; })
+              .then(function (data) {
+                if (!res.ok || data.ok === false) throw new Error(data.error || 'request-failed');
+                return data;
+              });
+          })
+          .then(function () {
+            var firstName = payload.name.split(/\s+/)[0];
+            if (payload.status === 'yes') {
+              successMsg.textContent = 'Thank you, ' + firstName + '! Your seat is reserved. See you on December 7!';
+            } else {
+              successMsg.textContent = 'Thank you, ' + firstName + '. We\u2019re sorry to miss you \u2014 you\u2019ll be remembered at the celebration!';
+            }
+            form.style.display = 'none';
+            success.classList.add('show');
+            var closeBtn = success.querySelector('button');
+            if (closeBtn) closeBtn.focus();
+          })
+          .catch(function (err) {
+            console.error('RSVP failed:', err);
+            formError.textContent = 'We couldn\u2019t send your RSVP just now. Please check your connection and try again.';
+            submitBtn.disabled = false;
+            submitBtn.firstChild.textContent = 'Send RSVP ';
+            name.focus();
+          });
       });
     })();
   </script>
