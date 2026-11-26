@@ -7,3 +7,5 @@ _probe*.html
 # OS / editor
 .DS_Store
 Thumbs.db
+
+.vercel
