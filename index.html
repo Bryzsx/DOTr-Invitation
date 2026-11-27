@@ -964,14 +964,6 @@
             </select>
           </div>
           <div class="field">
-            <label for="fGuests">Number of guests (optional)</label>
-            <select class="input" id="fGuests" name="guests">
-              <option value="0">Just me</option>
-              <option value="1">+1 guest</option>
-              <option value="2">+2 guests</option>
-            </select>
-          </div>
-          <div class="field">
             <label for="fMsg">Message (optional)</label>
             <textarea class="input" id="fMsg" name="message" placeholder="A short note for the celebrants&hellip;"></textarea>
           </div>
@@ -1277,7 +1269,6 @@
           name: name.value.trim(),
           office: document.getElementById('fOffice').value.trim(),
           status: status.value,
-          guests: parseInt(document.getElementById('fGuests').value, 10) || 0,
           message: document.getElementById('fMsg').value.trim()
         };
 
