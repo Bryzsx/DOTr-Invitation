@@ -573,6 +573,10 @@
       color: var(--navy-dark); letter-spacing: .06em; text-transform: uppercase;
     }
     .success p { font-family: var(--serif); font-size: 18px; margin-top: 8px; color: var(--text-ink); }
+    .success p strong {
+      font-weight: 700; color: var(--gold-deep);
+      letter-spacing: .05em; white-space: nowrap;
+    }
     .success .btn-secondary {
       margin-top: 22px; display: inline-flex; align-items: center; gap: 8px;
       font-size: 11px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase;
@@ -1288,7 +1292,11 @@
           .then(function () {
             var firstName = payload.name.split(/\s+/)[0];
             if (payload.status === 'yes') {
-              successMsg.textContent = 'Thank you, ' + firstName + '! Your seat is reserved. See you on December 7!';
+              successMsg.textContent = '';
+              successMsg.append('Thank you, ' + firstName + '! We have reserved ');
+              var seat = document.createElement('strong');
+              seat.textContent = '1 SEAT FOR YOU';
+              successMsg.append(seat, '. See you on December 7!');
             } else {
               successMsg.textContent = 'Thank you, ' + firstName + '. We\u2019re sorry to miss you \u2014 you\u2019ll be remembered at the celebration!';
             }
